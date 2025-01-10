@@ -9,11 +9,11 @@ services:
     autoDeploy: false
     runtime: ruby
     name: maybe
-    repo: https://github.com/maybe-finance/maybe.git
+    repo: https://github.com/lxviz/maybe.git
     branch: main
     healthCheckPath: /up
     buildCommand: "./bin/render-build.sh"
-    preDeployCommand: "bundle exec rails db:migrate"
+  # preDeployCommand: "bundle exec rails db:migrate"
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
@@ -41,7 +41,7 @@ services:
       # The app uses this info to know which repo to fetch latest commit data from for upgrades
       # This should MATCH the `repo` and `branch` keys in the config above ALWAYS
       - key: GITHUB_REPO_OWNER
-        value: maybe-finance
+        value: lxviz
       - key: GITHUB_REPO_NAME
         value: maybe
       - key: GITHUB_REPO_BRANCH
@@ -49,7 +49,7 @@ services:
 
       # Required to allow your self-hosted instance to be able to upgrade itself
       - key: UPGRADES_ENABLED
-        value: true
+        value: false
 
       # If you upgrade your instance to a paid plan, you can set this to false (or remove it)
       # See note in `render-build.sh` script.
